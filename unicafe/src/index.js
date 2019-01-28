@@ -1,64 +1,6 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import {XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LabelSeries, VerticalBarSeries, RadialChart} from 'react-vis'
-
-const BarChart = ({good, bad, neutral}) => {
-    const data = [
-        {"y":good, "x":"hyvä"},
-        {"y":neutral, "x":"neutraali"},
-        {"y":bad, "x":"huono"}
-    ]
-
-
-    if (good+bad+neutral === 0) {
-        return(
-            <div id="visualisation">
-                
-            </div>
-        )
-    }
-    return (
-
-        <XYPlot 
-            xType="ordinal"
-            width={300}
-            height={300}
-            yDomain={[0, Math.max.apply(Math, data.map(function(o) {return o.y+10}))]}
-        >
-            <VerticalGridLines />
-            <HorizontalGridLines />
-            <XAxis />
-            <YAxis />
-            <VerticalBarSeries data={data} />
-            <LabelSeries data={data.map(o => {return {...o, label: o.y.toString()}})} 
-                labelAnchorX="middle"
-                labelAnchorY="text-after-edge"/>
-        </XYPlot>
-    )
-}
-
-const DonutChart = ({good, bad, neutral}) => {
-    const data = [
-        {"angle":good, "label":"hyvä"},
-        {"angle":neutral, "label":"neutraali"},
-        {"angle":bad, "label":"huono"}
-    ]
-
-    if (good+bad+neutral === 0) {
-        return (
-            <div id="visualisation"></div>
-        )
-    }
-
-    return (
-        <RadialChart data={data}
-            width={300}
-            height={300}
-            showLabels={true}
-        />
-    )
-}
 
 const Statistics = ({good, bad, neutral}) => {
     const calculateTotal = (good, bad, neutral) => {
@@ -132,10 +74,6 @@ const App = () => {
             <Button text='huono' handleClick = {() => setBad(bad + 1)}/>
         </div>
         <Statistics good={good} bad={bad} neutral={neutral} />
-        <div id="visualisation">
-            <BarChart good={good} bad={bad} neutral={neutral} />
-            <DonutChart good={good} bad={bad} neutral={neutral} />
-        </div>
     </div>
   )
 }

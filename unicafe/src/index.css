@@ -69,11 +69,3 @@ td {
 td:hover {
   border: dashed #8db584 1px;
 }
-
-#visualisation {
-  margin-left: 10%;
-  margin-right: 10%;
-  align-items: center;
-  align-content: center;
-  display:flex;
-}
